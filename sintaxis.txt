@@ -1,0 +1,16 @@
+El gestor deberá usar una sintáxis especial, detallada en este .txt.
+
+Crear tablas:
+
+Para crear tablas, la sintáxis tiene esta forma:
+
+CREATE TABLE table_name [DATA_TYPE_1] [COLUMN1_NAME];
+
+Importante notar:
+-CREATE TABLE siempre debe ir en mayúsculas
+-table_name será el nombre que se le desee poner a la tabla.
+-DATA_TYPE_1 es el tipo de dato que se le deseará poner al atributo. Este puede ser:
+ *INTEGER 
+ *DATE
+ *VARCHAR(N), donde N es la cantidad de bytes (caracteres) a almacenarse.
+-COLUMN1_NAME es el nombre que se le pondrá a la columna.

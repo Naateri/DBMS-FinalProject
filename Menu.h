@@ -1,7 +1,8 @@
 #ifndef MENU_H
 #define MENU_H
-#include "types.h"
+//types included at db.h
 #include "db.h"
+#include "functions.h"
 
 class Menu {
 private:
@@ -12,6 +13,5 @@ public:
 	Menu(DataBase db);
 	void main_menu();
 };
-
 #endif
 
