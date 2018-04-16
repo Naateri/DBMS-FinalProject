@@ -4,6 +4,10 @@
 struct VCHAR{
 	u_int n; //size of char
 	char* V_CHAR;
+	VCHAR(){
+		this->n = 0;
+		this->V_CHAR = new char[0];
+	}
 	VCHAR(u_int n){
 		this->n = n;
 		this->V_CHAR = new char[n+1];
@@ -13,7 +17,7 @@ struct VCHAR{
 
 struct Data{
 	LL* NUMBER;
-	char** VARCHAR;
+	VCHAR* VARCHAR;
 	char** DATE;
 	strp_vec names; //pair: type, name
 	u_int n, v, d;
@@ -22,7 +26,7 @@ struct Data{
 	}
 	Data( u_int n, u_int v, u_int d, strp_vec names ){ //n = amount of numbers, v = amount of chars, d = amount of dates
 		this->NUMBER = new LL[n];
-		this->VARCHAR = new char*[v];
+		this->VARCHAR = new VCHAR[v];
 		this->DATE = new char*[d];
 		this->names = names;
 		this->n = n;

@@ -7,8 +7,8 @@ DataBase::DataBase(){
 	this->tables = tables;
 }
 
-bool DataBase::interpret_query(str query, str& name, strp_vec& vec, uint_vec& num){
-	str temp, type, type_name;
+bool DataBase::interpret_query(str query, str& name, strp_vec& vec, char_name_vec& cvec, uint_vec& num){
+	str temp, type, type_name, char_num;
 	int i, int_count, char_count, date_count;
 	int_count = char_count = date_count = 0;
 	vec.clear();
@@ -24,10 +24,11 @@ bool DataBase::interpret_query(str query, str& name, strp_vec& vec, uint_vec& nu
 		i++;
 	}
 	i++; //so query[i] != ' '
-	while (query[i] != ';'){
+	while (query[i] != ';' || query[i] != ' '){
 		type.clear();
 		type_name.clear();
 		str_pair data_name_pair; //pair of str(type), str(name)
+		char_name char_name_pair;
 		while (query[i] != ' ' && query[i] != '('){ //filling with type
 			type += query[i];
 			i++;
@@ -45,8 +46,35 @@ bool DataBase::interpret_query(str query, str& name, strp_vec& vec, uint_vec& nu
 			continue;
 		} else if (type == "VARCHAR") {
 			char_count++;
+			char_num.clear();
+			while (query[i] != ')' && query[i] != ';'){ //filling with the amount of bytes chosen
+				char_num += query[i];
+				i++;
+			}
+			i++; //i is now ' ' 
+			//i++; //i is now the first letter of the name
+			while (query[i] != ' ' && query[i] != ';'){
+				type_name += query[i];
+			}
+			data_name_pair.first = type;
+			data_name_pair.second = type_name;
+			
+			char_name_pair.first = type_name;
+			char_name_pair.second = stringToUint(char_num); //n chars
+			
+			vec.push_back(data_name_pair);
+			cvec.push_back(char_name_pair);
+			continue;
 		} else if (type == "DATE"){
 			date_count++;
+			while (query[i] != ' ' && query[i] != ';'){ //filling with the name chosen
+				type_name += query[i];
+				i++;
+			}
+			data_name_pair.first = type;
+			data_name_pair.second = type_name;
+			vec.push_back(data_name_pair);
+			continue;
 		} else {
 			std::cout << "Sintaxis incorrecta. Vuelva a intentarlo.\n";
 			return 0;
@@ -65,8 +93,9 @@ void DataBase::add_table(Table* t){
 void DataBase::create_table(str query){
 	str name;
 	strp_vec vec;
+	char_name_vec cvec;
 	uint_vec num (3);
-	if (!interpret_query(query, name, vec, num)) return;
+	if (!interpret_query(query, name, vec, cvec, num)) return;
 	Table* temp = new Table(name, vec, num);
 	add_table(temp);
 	std::cout << "Tabla " << temp->getName() << " creada.\n";
