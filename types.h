@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <utility>
+#include <fstream>
 
 //previous definitions of future implementations
 
@@ -24,3 +25,4 @@ typedef std::vector<Table*> table_vec;
 typedef std::vector<u_int> uint_vec;
 typedef std::vector<VCHAR*> vchar_vec;
 typedef std::stringstream ss;
+typedef std::ofstream txt_file;

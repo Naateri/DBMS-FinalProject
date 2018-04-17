@@ -1,6 +1,7 @@
 #include "db.h"
 
 str create_tab = "CREATE TABLE ";
+txt_file tables_txt;
 
 DataBase::DataBase(){
 	table_vec tables;
@@ -24,7 +25,7 @@ bool DataBase::interpret_query(str query, str& name, strp_vec& vec, char_name_ve
 		i++;
 	}
 	i++; //so query[i] != ' '
-	while (query[i] != ';' || query[i] != ' '){
+	while (query[i] != ';' && query[i] != ' '){
 		type.clear();
 		type_name.clear();
 		str_pair data_name_pair; //pair of str(type), str(name)
@@ -43,7 +44,7 @@ bool DataBase::interpret_query(str query, str& name, strp_vec& vec, char_name_ve
 			data_name_pair.first = type;
 			data_name_pair.second = type_name;
 			vec.push_back(data_name_pair);
-			continue;
+			i++;
 		} else if (type == "VARCHAR") {
 			char_count++;
 			char_num.clear();
@@ -52,10 +53,12 @@ bool DataBase::interpret_query(str query, str& name, strp_vec& vec, char_name_ve
 				i++;
 			}
 			i++; //i is now ' ' 
-			//i++; //i is now the first letter of the name
+			i++; //i is now the letter
 			while (query[i] != ' ' && query[i] != ';'){
 				type_name += query[i];
+				i++;
 			}
+			
 			data_name_pair.first = type;
 			data_name_pair.second = type_name;
 			
@@ -64,7 +67,8 @@ bool DataBase::interpret_query(str query, str& name, strp_vec& vec, char_name_ve
 			
 			vec.push_back(data_name_pair);
 			cvec.push_back(char_name_pair);
-			continue;
+			
+			i++;
 		} else if (type == "DATE"){
 			date_count++;
 			while (query[i] != ' ' && query[i] != ';'){ //filling with the name chosen
@@ -74,7 +78,8 @@ bool DataBase::interpret_query(str query, str& name, strp_vec& vec, char_name_ve
 			data_name_pair.first = type;
 			data_name_pair.second = type_name;
 			vec.push_back(data_name_pair);
-			continue;
+			
+			i++;
 		} else {
 			std::cout << "Sintaxis incorrecta. Vuelva a intentarlo.\n";
 			return 0;
@@ -95,9 +100,15 @@ void DataBase::create_table(str query){
 	strp_vec vec;
 	char_name_vec cvec;
 	uint_vec num (3);
+	
 	if (!interpret_query(query, name, vec, cvec, num)) return;
-	Table* temp = new Table(name, vec, num);
+	Table* temp = new Table(name, vec, num, cvec);
 	add_table(temp);
+	
+	tables_txt.open("tables.rlpa"); //adding to the file in hdd
+	writeTable(tables_txt, temp);
+	tables_txt.close();
+	
 	std::cout << "Tabla " << temp->getName() << " creada.\n";
 	temp->desc();
 }

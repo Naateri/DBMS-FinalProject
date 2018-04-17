@@ -20,29 +20,22 @@ struct Data{
 	VCHAR* VARCHAR;
 	char** DATE;
 	strp_vec names; //pair: type, name
+	char_name_vec vchars;
 	u_int n, v, d;
 	Data(){
 		;
 	}
-	Data( u_int n, u_int v, u_int d, strp_vec names ){ //n = amount of numbers, v = amount of chars, d = amount of dates
+	Data( u_int n, u_int v, u_int d, strp_vec names, char_name_vec vchars ){ //n = amount of numbers, v = amount of chars, d = amount of dates
 		this->NUMBER = new LL[n];
 		this->VARCHAR = new VCHAR[v];
 		this->DATE = new char*[d];
 		this->names = names;
+		this->vchars = vchars;
 		this->n = n;
 		this->v = v;
 		this->d = d;
 	}
 	void print_info(){
-		/*uint_vec temp (3);
-		temp.at(0) = n;
-		temp.at(1) = v;
-		temp.at(2) = d;
-		for(int i = 0; i < names.size(); i++){
-			if (names.at(i).first == "INTEGER"){
-				std::cout << "Tipo de dato: INTEGER\n";
-			}
-		}*/
-		print_vec(names);
+		print_vec(names, vchars);
 	}
 };

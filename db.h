@@ -1,5 +1,6 @@
 //types at table.h
 #include "table.h"
+#include "functions.h"
 
 class DataBase{
 private:
