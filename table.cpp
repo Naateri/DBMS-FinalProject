@@ -20,7 +20,7 @@ void Table::desc(){
 
 
 void writeTable(txt_file& file, Table* t){
-	int camps, j = 0;
+	int j = 0;
 	file << t->name << '\n';
 	for(int i = 0; i < t->t_data->names.size(); i++){
 		if (t->t_data->names.at(i).first == "VARCHAR" ){
@@ -30,4 +30,14 @@ void writeTable(txt_file& file, Table* t){
 		file << t->t_data->names.at(i).second << '\n'; //STORED: DATA_TYPE DATA_NAME ENDL 
 	}
 	file << "-----------------------------------------"; //SEPARATION BETWEEN TABLES 
+	file << '\n' << std::endl;  //so the next one starts at the next line
+}
+
+void writeHeaderTable(txt_file& file, Table* t){
+	int j = 0;
+	for(int i = 0; i < t->t_data->names.size(); i++){
+		if (i != t->t_data->names.size()-1) file << t->t_data->names.at(i).second << ','; //STORED: DATA_NAME,DATA_NAME,... ENDL 
+		else file << t->t_data->names.at(i).second;
+	}
+	file << '\n'; //SEPARATION FOR THE DATA TO BE STORED
 }

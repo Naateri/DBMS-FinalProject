@@ -100,14 +100,27 @@ void DataBase::create_table(str query){
 	strp_vec vec;
 	char_name_vec cvec;
 	uint_vec num (3);
+	int i;
 	
 	if (!interpret_query(query, name, vec, cvec, num)) return;
 	Table* temp = new Table(name, vec, num, cvec);
 	add_table(temp);
 	
-	tables_txt.open("tables.rlpa"); //adding to the file in hdd
+	tables_txt.open("tables.rlpa", std::fstream::app); //adding to the file in hdd
 	writeTable(tables_txt, temp);
 	tables_txt.close();
+	
+	name += ".table";
+	char* file_name = new char[name.size() + 1];
+	for (i = 0; i < name.size(); i++){
+		file_name[i] = name.at(i);
+	}
+	file_name[i] = '\0';
+	tables_txt.open(file_name);
+	writeHeaderTable(tables_txt, temp);
+	tables_txt.close();
+	
+	delete [] file_name;
 	
 	std::cout << "Tabla " << temp->getName() << " creada.\n";
 	temp->desc();

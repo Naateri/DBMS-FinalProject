@@ -9,5 +9,6 @@ public:
 	str getName();
 	void desc();
 	friend void writeTable(txt_file& file, Table* t);
+	friend void writeHeaderTable(txt_file& file, Table* t);
 };
 

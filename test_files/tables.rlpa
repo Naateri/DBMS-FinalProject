@@ -1,0 +1,33 @@
+my_table
+INTEGER num_1
+INTEGER num_2
+VARCHAR(10) name
+DATE date_1
+-----------------------------------------
+TEST
+INTEGER NUM_1
+DATE DATE_1
+VARCHAR(10) T_NAME
+-----------------------------------------
+ignore
+VARCHAR(20) test_vchar
+INTEGER test_int
+INTEGER test_int_2
+-----------------------------------------
+ignore_2
+INTEGER just_testing
+-----------------------------------------
+test_a
+INTEGER a
+-----------------------------------------
+test_b
+INTEGER xd
+-----------------------------------------
+
+test_c
+INTEGER a
+VARCHAR(10) b
+DATE c
+INTEGER some_num
+-----------------------------------------
+
