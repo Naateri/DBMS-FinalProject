@@ -1,8 +1,11 @@
 #include "db.h"
 
 str create_tab = "CREATE TABLE ";
-str insert_row = "INSERT INTO ";
+str insert_into = "INSERT INTO ";
+str select = "SELECT ";
 txt_file tables_txt;
+read_file tables_txt2;
+char comparisons[3] = {'<', '>', '='};
 
 DataBase::DataBase(){
 	table_vec tables;
@@ -93,11 +96,11 @@ bool DataBase::interpret_query(str query, str& name, strp_vec& vec, char_name_ve
 }
 
 bool DataBase::interpret_query_i(str query, str& name, str_vec& values){
-	str temp, type, type_name, char_num;
+	str temp, temp2;
 	int i;
 	values.clear();
 	temp = query.substr(0, 12); //temp = "INSERT INTO "
-	if (temp != create_tab){
+	if (temp != insert_into){
 		std::cout << "Sintaxis incorrecta. Vuelva a intentarlo.\n";
 		return 0;
 	}
@@ -108,9 +111,12 @@ bool DataBase::interpret_query_i(str query, str& name, str_vec& values){
 		i++;
 	}
 	i++; //so query[i] != ' '
-	temp = query.substr(i, i+7); //temp = "VALUES "
-	if (temp != "VALUES "){
+	for (int j = 0; j < 7; j++){
+		temp2 += query[i++];
+	}
+	if (temp2 != "VALUES "){
 		std::cout << "Sintaxis incorrecta. Vuelva a intentarlo.\n";
+		return 0;
 	}
 	while (query[i] != ';' && query[i] != ' '){
 		temp.clear();
@@ -120,6 +126,47 @@ bool DataBase::interpret_query_i(str query, str& name, str_vec& values){
 		}
 		i++;
 		values.push_back(temp);
+	}
+	return 1;
+}
+
+bool DataBase::interpret_query_s(str query, str& name, str_vec& values){
+	str temp, temp2;
+	int i;
+	values.clear();
+	temp = query.substr(0, 7); //temp = "SELECT "
+	if (temp != select){
+		std::cout << "Sintaxis incorrecta. Vuelva a intentarlo.\n";
+		return 0;
+	}
+	i = 7;
+	while (query[i] != ',' && query[i] != ' '){ //getting the data to fill
+		if (query[i] == '*'){
+			i++; //i = ' '
+			temp = "*";
+			values.push_back(temp);
+			break;
+		}
+		temp.clear();
+		while (query[i] != ' ' && query[i] != ';'){ //filling with type
+			temp += query[i];
+			i++;
+		}
+		i++;
+		values.push_back(temp);
+	}
+	i++; //query[i] is NOT ' ' now
+	for (int j = 0; j < 5; j++){
+		temp2 += query[i++];
+	}
+	if (temp2 != "FROM "){
+		std::cout << "Sintaxis incorrecta. Vuelva a intentarlo.\n";
+		return 0;
+	}
+	name.clear();
+	while (query[i] != ' '){ //getting the name of the table
+		name += query[i];
+		i++;
 	}
 	return 1;
 }
@@ -179,4 +226,29 @@ void DataBase::insert_row(str query){
 	delete [] file_name;
 	std::cout << "Datos insertados.\n";
 	
+}
+
+void DataBase::select_data(str query){
+	str name, result;
+	str_vec vec;
+	int i;
+	result.clear();
+	
+	if (!interpret_query_s(query, name, vec)) return;
+	name += ".table";
+	char* file_name = new char[name.size() + 1];
+	for (i = 0; i < name.size(); i++){
+		file_name[i] = name.at(i);
+	}
+	file_name[i] = '\0';
+	tables_txt2.open(file_name, std::fstream::app);
+	//get the info from the select clause
+	vec = select_query(tables_txt2, vec);
+	tables_txt2.close();
+	
+	delete [] file_name;
+	
+	for (int i = 0; i < vec.size(); i++){
+		std::cout << vec.at(i) << '\n';
+	}
 }

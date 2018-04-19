@@ -41,10 +41,3 @@ void writeHeaderTable(txt_file& file, Table* t){
 	}
 	file << '\n'; //SEPARATION FOR THE DATA TO BE STORED
 }
-
-void writeInsert(txt_file& file, str_vec t){
-	for (int i = 0; i < t.size(); i++){
-		file << t.at(i) << ',';
-	}
-	file << '\n';
-}

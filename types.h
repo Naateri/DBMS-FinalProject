@@ -27,3 +27,4 @@ typedef std::vector<VCHAR*> vchar_vec;
 typedef std::vector<str> str_vec;
 typedef std::stringstream ss;
 typedef std::ofstream txt_file;
+typedef std::ifstream read_file;

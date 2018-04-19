@@ -26,10 +26,11 @@ TO-DO (thus far, will keep adding here):
 	FILLED WITH 100K
 	ANOTHER ONE WITH 1M
 	INSERTS, DELETES, UPDATES
-	(objective: 23/04/2018)
--Loading the already created tables to tables_vec (objective: 19/04/2018 11:30 pm)
--All of INSERT (including INSERT(n) elements) (objective: 18/04/2018 11:59 pm)
+	(objective: 23/04/2018 3:59 pm)
+-Loading the already created tables to tables_vec (objective: 19/04/2018 11:30 pm) //NOT REALLY A PRIORITY RIGHT NOW
+-INSERT(n) (objective: 22/04/2018 11:59 pm)
 -All of SELECT  (objective: 19/04/2018 11:59 pm)
+-WHERE CLAUSES (objective: 19/04/2018 10:59 pm)
 -All of DELETE (objective: 20/04/2018 11:59 pm)
 -All of UPDATE (objective: 21/04/2018 11:59 pm)
 
@@ -45,5 +46,7 @@ DONE:
 -Recognize VARCHAR(n) and store it somehow within the table data (reason why we have char_name pairs) (done: 16/04/2018 10:49 pm)
 -Creating a new .table file per table created (where the data will be stored) (stored csv-like) (done: 17/04/2018 8:33 am)
 -When inserting the table to "tables.rlpa", to NOT delete the previous inserted Data (done: 17/04/2018 8:46 am)
+-INSERT INTO syntax and actually inserting data (done: 18/04/2018 11:08 pm)
+-SELECT * FROM TABLE (done: 18/04/2018 11:42 pm)
 
 **/

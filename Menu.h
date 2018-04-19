@@ -10,6 +10,7 @@ private:
 	u_short currentMenu;
 	void menu_1();
 	void menu_2();
+	void menu_3();
 public:
 	Menu(DataBase db);
 	void main_menu();
