@@ -6,6 +6,12 @@
 #include <utility>
 #include <fstream>
 
+//defines mainly used for comparators
+#define SMALLER <
+#define EQUAL ==
+#define GREATER >
+
+
 //previous definitions of future implementations
 
 class Table;

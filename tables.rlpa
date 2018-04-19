@@ -1,27 +1,5 @@
-PRUEBA0
-INTEGER I1
-VARCHAR(20) C1
-DATE D1
-DATE D2
-INTEGER I2
------------------------------------------
-
-MI_TABLA
-INTEGER NUM_3
-VARCHAR(15) MY_NAME
------------------------------------------
-
-hola
-DATE JOSE
------------------------------------------
-
-OLAH
-INTEGER I1
-VARCHAR(5) C3
------------------------------------------
-
 PRUEBA5
-INTEGER VALOR_1
-VARCHAR(10) VALOR_2
+VALOR_1 INTEGER
+VALOR_2 VARCHAR(10)
 -----------------------------------------
 

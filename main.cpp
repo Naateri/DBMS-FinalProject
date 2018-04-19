@@ -30,7 +30,6 @@ TO-DO (thus far, will keep adding here):
 -Loading the already created tables to tables_vec (objective: 19/04/2018 11:30 pm) //NOT REALLY A PRIORITY RIGHT NOW
 -INSERT(n) (objective: 22/04/2018 11:59 pm)
 -All of SELECT  (objective: 19/04/2018 11:59 pm)
--WHERE CLAUSES (objective: 19/04/2018 10:59 pm)
 -All of DELETE (objective: 20/04/2018 11:59 pm)
 -All of UPDATE (objective: 21/04/2018 11:59 pm)
 
@@ -48,5 +47,6 @@ DONE:
 -When inserting the table to "tables.rlpa", to NOT delete the previous inserted Data (done: 17/04/2018 8:46 am)
 -INSERT INTO syntax and actually inserting data (done: 18/04/2018 11:08 pm)
 -SELECT * FROM TABLE (done: 18/04/2018 11:42 pm)
+-WHERE CLAUSE (done: 19/04/2018 6:08 pm)
 
 **/

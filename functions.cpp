@@ -7,6 +7,13 @@ u_int stringToUint(str a){
 	return ret;
 }
 
+LL stringToLL(str a){
+	LL ret;
+	ss convi(a);
+	convi >> ret;
+	return ret;
+}
+
 void print_vec(strp_vec vec, char_name_vec cvec){
 	int j = 0;
 	for(int i = 0; i < vec.size(); i++){
@@ -29,23 +36,10 @@ void writeInsert(txt_file& file, str_vec t){
 	//file << '\n';
 }
 
-str_vec select_query(read_file& file, str_vec columns){
-	str temp, temp2;
-	str_vec res;
-	if (columns.at(0) == "*"){
-		while (! file.eof() ){
-			temp2.clear();
-			getline(file, temp2);
-			temp.clear();
-			for(int i = 0; i < temp2.size(); i++){
-				if (temp2.at(i) == ',') {
-					temp += ' ';
-				} else temp += temp2.at(i);
-			}
-			res.push_back(temp);
-		}
-	} else { //common case
-		; 
+int findInArray(char to_be_found, char* to_look, int size){
+	int index;
+	for(index = 0; index < size; index++){
+		if (to_be_found == to_look[index]) return index;
 	}
-	return res;
+	return -1; //if it wasn't found
 }
