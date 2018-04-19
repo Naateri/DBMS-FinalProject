@@ -10,5 +10,6 @@ public:
 	void desc();
 	friend void writeTable(txt_file& file, Table* t);
 	friend void writeHeaderTable(txt_file& file, Table* t);
+	friend void writeInsert(txt_file& file, str_vec t);
 };
 

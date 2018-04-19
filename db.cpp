@@ -1,6 +1,7 @@
 #include "db.h"
 
 str create_tab = "CREATE TABLE ";
+str insert_row = "INSERT INTO ";
 txt_file tables_txt;
 
 DataBase::DataBase(){
@@ -91,6 +92,38 @@ bool DataBase::interpret_query(str query, str& name, strp_vec& vec, char_name_ve
 	return 1;
 }
 
+bool DataBase::interpret_query_i(str query, str& name, str_vec& values){
+	str temp, type, type_name, char_num;
+	int i;
+	values.clear();
+	temp = query.substr(0, 12); //temp = "INSERT INTO "
+	if (temp != create_tab){
+		std::cout << "Sintaxis incorrecta. Vuelva a intentarlo.\n";
+		return 0;
+	}
+	i = 12;
+	name.clear();
+	while (query[i] != ' '){ //getting the name of the table
+		name += query[i];
+		i++;
+	}
+	i++; //so query[i] != ' '
+	temp = query.substr(i, i+7); //temp = "VALUES "
+	if (temp != "VALUES "){
+		std::cout << "Sintaxis incorrecta. Vuelva a intentarlo.\n";
+	}
+	while (query[i] != ';' && query[i] != ' '){
+		temp.clear();
+		while (query[i] != ' ' && query[i] != ';'){ //filling with type
+			temp += query[i];
+			i++;
+		}
+		i++;
+		values.push_back(temp);
+	}
+	return 1;
+}
+
 void DataBase::add_table(Table* t){
 	this->tables.push_back(t);
 }
@@ -124,4 +157,26 @@ void DataBase::create_table(str query){
 	
 	std::cout << "Tabla " << temp->getName() << " creada.\n";
 	temp->desc();
+}
+
+void DataBase::insert_row(str query){
+	str name;
+	str_vec vec;
+	int i;
+	
+	if (!interpret_query_i(query, name, vec)) return;
+	name += ".table";
+	char* file_name = new char[name.size() + 1];
+	for (i = 0; i < name.size(); i++){
+		file_name[i] = name.at(i);
+	}
+	file_name[i] = '\0';
+	tables_txt.open(file_name, std::fstream::app);
+	//write the info retrieved to file_name
+	writeInsert(tables_txt, vec);
+	tables_txt.close();
+	
+	delete [] file_name;
+	std::cout << "Datos insertados.\n";
+	
 }

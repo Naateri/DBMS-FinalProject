@@ -24,5 +24,6 @@ typedef std::vector<char_name> char_name_vec;
 typedef std::vector<Table*> table_vec;
 typedef std::vector<u_int> uint_vec;
 typedef std::vector<VCHAR*> vchar_vec;
+typedef std::vector<str> str_vec;
 typedef std::stringstream ss;
 typedef std::ofstream txt_file;

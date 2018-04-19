@@ -17,11 +17,21 @@ int main (int argc, char *argv[]) {
 /**
 
 TO-DO (thus far, will keep adding here):
+-Create table with columns:
+	-ID INTEGER (INCREMENTAL)
+	-NOMBRE VARCHAR(15)
+	-APELLIDO VARCHAR(20)
+	-EDAD INTEGER
+	-FECHA DATE
+	FILLED WITH 100K
+	ANOTHER ONE WITH 1M
+	INSERTS, DELETES, UPDATES
+	(objective: 23/04/2018)
 -Loading the already created tables to tables_vec (objective: 19/04/2018 11:30 pm)
--All of INSERT (including INSERT(n) elements) (objective: 21/04/2018 11:59 pm)
--All of SELECT  (objective: 25/04/2018 11:30 pm)
--All of DELETE (objective: 27/04/2018 11:59 pm)
--All of UPDATE (objective: 1/05/2018 8:00 pm)
+-All of INSERT (including INSERT(n) elements) (objective: 18/04/2018 11:59 pm)
+-All of SELECT  (objective: 19/04/2018 11:59 pm)
+-All of DELETE (objective: 20/04/2018 11:59 pm)
+-All of UPDATE (objective: 21/04/2018 11:59 pm)
 
 DUE DATE: 05/05/2018 10:00 am
 
