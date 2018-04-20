@@ -285,6 +285,8 @@ void DataBase::select_data(str query){
 	for (int i = 0; i < vec.size(); i++){
 		std::cout << vec.at(i) << '\n';
 	}
+	
+	this->query_where = 0;
 }
 
 void DataBase::delete_data(str query){
@@ -304,10 +306,9 @@ u_int DataBase::finding_atribute_type(str type_name, str table_name, int& pos){
 	str temp, temp2;
 	while(! tables_file.eof() ){
 		getline(tables_file, temp);
-		std::cout << "table_name: " << table_name << " temp: " << temp << std::endl;
+		//std::cout << "table_name: " << table_name << " temp: " << temp << std::endl;
 		if (temp == table_name) break; //we've found the table we want to look at
 	}
-	std::cout << "ouf of while\n";
 	pos = 0;
 	while(! tables_file.eof() ){
 		temp2.clear();
@@ -352,15 +353,12 @@ str_vec DataBase::select_query(read_file& file, str_vec columns, str name, str c
 	
 	if (columns.at(0) == "*"){
 		if (this->query_where){ //finding the atributes
-			std::cout << "WHERE CLAUSE FOUND\n";
 			getline(getting_columns, temp2);
 			for(int i = 0; i < temp2.size(); i++){
 				if (temp2.at(i) == ',') {
-					std::cout << "temp is: " << temp << std::endl;
 					//std::cout << "values_to_compare.at(0) is: " << this->values_to_compare.at(0) << std::endl;
 					if (temp == column ){
 						type = finding_atribute_type(temp, name, pos);//finding atribute type: 0->INTEGER, 1->VARCHAR(N), 2->DATE
-						std::cout << "type is " << type << " and pos is " << pos << std::endl;
 						break;
 						//pos will store the number of column we have to check at the table
 					} else {
@@ -372,6 +370,7 @@ str_vec DataBase::select_query(read_file& file, str_vec columns, str name, str c
 				}
 			}
 		}
+		bool first_line = true;
 		while (! file.eof() ){
 			temp2.clear();
 			getline(file, temp2);
@@ -393,7 +392,6 @@ str_vec DataBase::select_query(read_file& file, str_vec columns, str name, str c
 							}
 							else {
 								if (value_found == val_to_compare){
-									std::cout << "THEY'RE EQUAL!\n";
 									to_insert = 1;
 								}
 							}
@@ -424,9 +422,10 @@ str_vec DataBase::select_query(read_file& file, str_vec columns, str name, str c
 					temp += temp2.at(i);
 				}
 			}
-			if (! this->query_where) res.push_back(temp);
+			if (! this->query_where || first_line) res.push_back(temp);
 			if (this->query_where && this->to_insert) res.push_back(temp);
 			this->to_insert = 0;
+			first_line = false;
 		}
 	} else { //common case
 		; 

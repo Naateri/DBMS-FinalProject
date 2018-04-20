@@ -23,11 +23,11 @@ void writeTable(txt_file& file, Table* t){
 	int j = 0;
 	file << t->name << '\n';
 	for(int i = 0; i < t->t_data->names.size(); i++){
-		file << t->t_data->names.at(i).second << '\n'; //STORED: DATA_NAME DATA_TYPE ENDL 
+		file << t->t_data->names.at(i).second << ' '; //STORED: DATA_NAME DATA_TYPE ENDL 
 		if (t->t_data->names.at(i).first == "VARCHAR" ){
-			file << "VARCHAR(" << t->t_data->vchars.at(j).second << ")" << ' ';
+			file << "VARCHAR(" << t->t_data->vchars.at(j).second << ")" << '\n';
 			j++;
-		} else file << t->t_data->names.at(i).first << ' '; //TIPO DE DATO
+		} else file << t->t_data->names.at(i).first << '\n'; //TIPO DE DATO
 	}
 	file << "-----------------------------------------"; //SEPARATION BETWEEN TABLES 
 	file << '\n' << std::endl;  //so the next one starts at the next line
