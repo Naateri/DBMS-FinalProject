@@ -5,6 +5,7 @@
 #include <sstream>
 #include <utility>
 #include <fstream>
+#include <cstdio>
 
 //defines mainly used for comparators
 #define SMALLER <

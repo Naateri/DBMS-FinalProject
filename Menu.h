@@ -11,6 +11,7 @@ private:
 	void menu_1();
 	void menu_2();
 	void menu_3();
+	void menu_4();
 public:
 	Menu(DataBase db);
 	void main_menu();
