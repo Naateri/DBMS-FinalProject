@@ -13,9 +13,12 @@ private:
 	bool interpret_query_i(str query, str& name, str_vec& values);
 	bool interpret_query_s(str query, str& name, str_vec& values, str& column);
 	bool interpret_query_d(str query, str& name, str_vec& values, str& column);
+	bool interpret_query_u(str query, str& name, str_vec& values, str& column, str_vec& columns);
 	
 	str_vec select_query(read_file& file, str_vec columns, str name, str column); //each position at the vec returned is a row of data
 	void delete_query(read_file& file, txt_file& outfile, str_vec columns, str name, str column);
+	void update_query(read_file& file, txt_file& outfile, str_vec columns, str_vec values, str name, str column);
+	
 	u_int finding_atribute_type(str type_name, str table_name, int& pos);
 	void add_table(Table* t);
 public:

@@ -12,7 +12,8 @@ void Menu::main_menu(){
 	std::cout << "2. Insertar fila de datos\n";
 	std::cout << "3. Seleccionar datos\n";
 	std::cout << "4. Eliminar datos\n";
-	std::cout << "5. SOON\n";
+	std::cout << "5. Actualizar datos\n";
+	std::cout << "6. SOON\n";
 	std::cout << "100. Salir\n";
 	std::getline(std::cin, num);
 	this->currentMenu = stringToUint(num);
@@ -28,6 +29,9 @@ void Menu::main_menu(){
 		break;
 	case 4:
 		menu_4();
+		break;
+	case 5:
+		menu_5();
 		break;
 	case 100:
 		std::cout << "Nos vemos pronto !!!\n";
@@ -75,6 +79,16 @@ void Menu::menu_4(){
 	std::cout << "Tener cuidado con la sintaxis (revisar sintaxis.txt).\n";
 	std::getline(std::cin, query);
 	db.delete_data(query);
+	std::cout << "Regresando al menu principal.\n";
+	main_menu();
+}
+
+void Menu::menu_5(){
+	str query;
+	std::cout << "Ingrese la sentencia de actualizar datos.\n";
+	std::cout << "Tener cuidado con la sintaxis (revisar sintaxis.txt).\n";
+	std::getline(std::cin, query);
+	db.update_data(query);
 	std::cout << "Regresando al menu principal.\n";
 	main_menu();
 }

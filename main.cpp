@@ -26,12 +26,10 @@ TO-DO (thus far, will keep adding here):
 	FILLED WITH 100K
 	ANOTHER ONE WITH 1M
 	INSERTS, DELETES, UPDATES
-	(objective: 23/04/2018 3:59 pm)
+	(objective: 24/04/2018 6:59 pm)
 -Loading the already created tables to tables_vec (objective: 19/04/2018 11:30 pm) //NOT REALLY A PRIORITY RIGHT NOW
 -INSERT(n) (objective: 22/04/2018 11:59 pm)
--All of SELECT  (objective: 19/04/2018 11:59 pm)
--All of DELETE (objective: 20/04/2018 11:59 pm)
--All of UPDATE (objective: 21/04/2018 11:59 pm)
+-All of UPDATE (objective: 23/04/2018 9:59 pm)
 
 DUE DATE: 05/05/2018 10:00 am
 
@@ -48,5 +46,6 @@ DONE:
 -INSERT INTO syntax and actually inserting data (done: 18/04/2018 11:08 pm)
 -SELECT * FROM TABLE (done: 18/04/2018 11:42 pm)
 -WHERE CLAUSE (done: 19/04/2018 6:08 pm)
+-DELETE (done: 20/04/2018 11:00 pm)
 
 **/
